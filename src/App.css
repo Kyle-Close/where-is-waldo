@@ -31,6 +31,6 @@ body {
 
 @media screen and (min-width: 1000px) {
 	.App > img {
-		max-width: 50vw; /* limit the image to 50% of the viewport width on larger screens */
+		max-width: 55vw; /* limit the image to 50% of the viewport width on larger screens */
 	}
 }
