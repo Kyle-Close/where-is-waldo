@@ -11,7 +11,7 @@ function App() {
 		<div className='App'>
 			<MainMenuModal />
 			<PlayGame
-				disabled={true}
+				isDisabled={true}
 				gameImage={gameImage}
 			/>
 		</div>
