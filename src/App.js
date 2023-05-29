@@ -2,7 +2,7 @@ import './App.css';
 import PS3 from './img/Ps3.png';
 
 import PlayGame from './components/PlayGame';
-import MainMenuModal from './components/MainMenuModal';
+import MainMenuModal from './components/MenuModal';
 
 import gameImage from './img/Ps3.png'; // temporary. this needs to be taken from the firebase database.
 
