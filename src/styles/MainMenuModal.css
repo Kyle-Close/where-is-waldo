@@ -1,0 +1,10 @@
+.main-menu-modal {
+	position: fixed; /* or absolute if you want it to be only within the parent element */
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	height: 100%;
+	width: 50%;
+	display: grid;
+	grid-template-rows: repeat(2, 1fr);
+}
