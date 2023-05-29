@@ -1,10 +1,23 @@
 import React from 'react';
 
-function MenuSelectCard({ card }) {
+function MenuSelectCard({ card, isActive }) {
+	let activeClass = isActive ? 'selection-card-active' : null;
+
+	function handleOnClick() {
+		console.log('Selected');
+	}
+
 	return (
-		<div className='selection-card'>
+		<div
+			onClick={handleOnClick}
+			className={
+				activeClass ? `selection-card ${activeClass}` : 'selection-card'
+			}
+		>
 			<div className='highscore-difficulty-section'>
-				<p className='difficulty easy'>{card.difficulty}</p>
+				<p className={`difficulty ${getClassName(card.difficulty)}`}>
+					{card.difficulty}
+				</p>
 				<h5 className='player-highscore'>
 					{card.highscore}
 					<span>s</span>
@@ -18,6 +31,18 @@ function MenuSelectCard({ card }) {
 			</p>
 		</div>
 	);
+}
+
+function getClassName(difficulty) {
+	let cardClass;
+	if (difficulty === 'Easy') {
+		cardClass = 'easy';
+	} else if (difficulty === 'Medium') {
+		cardClass = 'medium';
+	} else if (difficulty === 'Medium') {
+		cardClass = 'hard';
+	}
+	return cardClass;
 }
 
 export default MenuSelectCard;

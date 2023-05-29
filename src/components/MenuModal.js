@@ -10,11 +10,20 @@ function MainMenuModal() {
 
 	const gameSelectCards = [
 		{
+			isActive: false,
 			difficulty: 'Easy',
 			highscore: '32',
 			name: 'Playstation 3',
 			characters: ['Kratos', 'Ratchet', 'Sack Boy'],
-			backgroundImgage: PS3,
+			backgroundImage: PS3,
+		},
+		{
+			isActive: false,
+			difficulty: 'Medium',
+			highscore: '125',
+			name: 'Nintendo',
+			characters: ['Link', 'Mario', 'Bowser'],
+			backgroundImage: PS3,
 		},
 	];
 
@@ -22,6 +31,7 @@ function MainMenuModal() {
 		<MenuSelectCard
 			key={index}
 			card={card}
+			isActive={card.isActive}
 		/>
 	));
 
