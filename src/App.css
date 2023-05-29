@@ -59,4 +59,22 @@ body {
 	.App > img {
 		max-width: 55vw; /* limit the image to 50% of the viewport width on larger screens */
 	}
+	.background {
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		transform: translate(-50%, -50%);
+		width: 70%;
+		height: 100%;
+		background-size: cover;
+		background-repeat: no-repeat;
+		background-position: center center;
+		background-attachment: fixed;
+		background-size: cover;
+	}
+
+	.selection-card {
+		width: 60%;
+		align-self: center;
+	}
 }

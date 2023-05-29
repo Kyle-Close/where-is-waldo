@@ -1,15 +1,11 @@
 import React from 'react';
 
-function MenuSelectCard({ card, isActive }) {
-	let activeClass = isActive ? 'selection-card-active' : null;
-
-	function handleOnClick() {
-		console.log('Selected');
-	}
+function MenuSelectCard({ card, handleClick, index }) {
+	let activeClass = card.isActive ? 'selection-card-active' : null;
 
 	return (
 		<div
-			onClick={handleOnClick}
+			onClick={() => handleClick(index)}
 			className={
 				activeClass ? `selection-card ${activeClass}` : 'selection-card'
 			}

@@ -95,3 +95,30 @@
 	font-family: 'Monomaniac One', sans-serif;
 	color: #bb840e;
 }
+
+.difficulty.hard {
+	font-family: 'Monomaniac One', sans-serif;
+	color: #bb0d07;
+}
+
+.menu-title {
+	color: #fc0404;
+	font-size: 2.3rem;
+	font-family: 'Monomaniac One', sans-serif;
+	align-self: center;
+	justify-self: center;
+	background-color: rgba(0, 0, 0, 0.397);
+	padding: 0 15px;
+	border-radius: 8px;
+	padding-bottom: 5px;
+	display: flex;
+	align-items: center;
+	border: 2px solid black;
+}
+
+.menu-title > span {
+	font-size: 2.3rem;
+	font-family: 'Monomaniac One', sans-serif;
+	color: blue;
+	align-self: center;
+}
