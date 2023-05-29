@@ -1,38 +1,26 @@
+#root {
+	position: relative;
+	display: flex;
+	background-color: #20262a;
+	justify-content: center; /* center the App component horizontally on larger screens */
+}
+
 .App {
-  text-align: center;
+	width: 100%;
+	overflow: hidden; /* prevent child elements from overflowing */
+	display: flex; /* added to center image */
+	justify-content: center; /* center image horizontally */
+	align-items: center; /* center image vertically */
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.App > img {
+	width: 100%; /* make the image take up 100% of its parent's width */
+	height: auto;
+	object-fit: cover; /* ensure image covers entire element */
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
-
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+@media screen and (min-width: 1000px) {
+	.App > img {
+		max-width: 50vw; /* limit the image to 50% of the viewport width on larger screens */
+	}
 }
