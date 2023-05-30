@@ -35,7 +35,7 @@ function getClassName(difficulty) {
 		cardClass = 'easy';
 	} else if (difficulty === 'Medium') {
 		cardClass = 'medium';
-	} else if (difficulty === 'Medium') {
+	} else if (difficulty === 'Hard') {
 		cardClass = 'hard';
 	}
 	return cardClass;
