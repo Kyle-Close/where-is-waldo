@@ -58,6 +58,7 @@ function MainMenuModal() {
 			<div className='menu-contents'>
 				<div className='map-selection-cards'>{menuCards}</div>
 			</div>
+			<button className='play-game-button'>Play</button>
 		</div>
 	);
 }
