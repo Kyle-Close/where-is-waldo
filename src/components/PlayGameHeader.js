@@ -16,7 +16,9 @@ function PlayGameHeader() {
 			<div>
 				<img src={sackboy} />
 			</div>
-			<h3>1:32</h3>
+			<div>
+				<h3>1:32</h3>
+			</div>
 		</div>
 	);
 }

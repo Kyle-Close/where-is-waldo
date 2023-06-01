@@ -93,9 +93,13 @@ body {
 	border-bottom-left-radius: 8px;
 }
 
-.play-game-header > div:last-of-type {
+.play-game-header > div:nth-child(3) {
 	border-top-right-radius: 8px;
 	border-bottom-right-radius: 8px;
+}
+
+.play-game-header > div:last-of-type {
+	border-radius: 8px;
 }
 
 .play-game-header > h3 {
