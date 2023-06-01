@@ -1,3 +1,7 @@
+html{
+	height: 100%;
+}
+
 body {
 	height: 100%; /* set body height to 100% */
 	margin: 0;
@@ -29,18 +33,22 @@ body {
 }
 
 .play-game-container {
-	position: relative;
+	position: absolute;
+    width: 100%;
+    top: 0%;
+    height: 100%;
 }
 
 .play-game-container > .play-game-enabled,
 .play-game-container > .play-game-disabled {
-	top: 0;
-	left: 0;
-	z-index: 2;
-	width: 100%; /* make the image take up 100% of its parent's width */
-	height: auto;
-	object-fit: cover; /* ensure image covers entire element */
-	box-shadow: 0px 0px 15px 5px rgba(255, 255, 255, 0.75); /* Add a shadow around the image */
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 2;
+    width: 100%;
+    overflow: auto;
+    object-fit: contain;
+    box-shadow: 0px 0px 15px 5px rgba(255, 255, 255, 0.75);
 }
 
 .play-game-disabled {
@@ -53,6 +61,12 @@ body {
 	height: 100%;
 	object-fit: cover;
 	z-index: 1;
+}
+
+.play-game-header{
+	z-index: 3;
+	position: sticky;
+	top: 0;
 }
 
 @media screen and (min-width: 1000px) {
