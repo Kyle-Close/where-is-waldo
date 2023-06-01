@@ -10,6 +10,7 @@ function PlayGameHeader(){
             <img src={ratchet} />
             <img src={kratos} />
             <img src={sackboy} />
+            <h3>1:32</h3>
         </div>
     )
 }
