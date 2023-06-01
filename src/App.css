@@ -102,6 +102,11 @@ body {
 	border-radius: 8px;
 }
 
+.play-game-header > div:last-of-type > h3 {
+	font-family: 'Monomaniac One', sans-serif;
+	color: rgb(0, 17, 255);
+}
+
 .play-game-header > h3 {
 	font-family: 'Monomaniac One', sans-serif;
 	place-self: center;
