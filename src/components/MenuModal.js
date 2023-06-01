@@ -48,12 +48,10 @@ function MainMenuModal() {
 
 	return (
 		<div className='main-menu-modal'>
-			<div
-				className='background'
-				style={{ backgroundImage: `url(${PS3})` }}
-			></div>
+			<img src={PS3} />
 			<div className='menu-title'>
-				pixel<span>Pursuit</span>
+				<p>pixel<span>Pursuit</span></p>
+				
 			</div>
 			<div className='menu-contents'>
 				<div className='map-selection-cards'>{menuCards}</div>
