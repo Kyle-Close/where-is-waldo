@@ -1,7 +1,7 @@
 import React from 'react';
 
 import ratchet from '../img/ratchet.webp';
-import kratos from '../img/Kratos.jpg';
+import kratos from '../img/Kratos.png';
 import sackboy from '../img/sackboy.webp';
 
 function PlayGameHeader() {
