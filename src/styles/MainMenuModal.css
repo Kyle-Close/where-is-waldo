@@ -168,7 +168,11 @@
 		width: 60%;
 		max-width: 60%;
 	}
-	.menu-title > p, .menu-title > span{
+	.menu-title > p{
+		font-size: 3rem;
+	}
+
+	.menu-title > p > span{
 		font-size: 3.5rem;
 	}
 }
