@@ -1,3 +1,12 @@
+html,
+body,
+#root,
+.App,
+.App > img,
+.play-game-container {
+	overflow: auto;
+}
+
 html {
 	height: 100%;
 }
@@ -15,8 +24,7 @@ body {
 }
 
 .App {
-	width: 100%;
-	overflow: hidden; /* prevent child elements from overflowing */
+	width: 100%; /* prevent child elements from overflowing */
 	display: flex; /* added to center image */
 	justify-content: center; /* center image horizontally */
 	align-items: center; /* center image vertically */
