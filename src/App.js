@@ -1,6 +1,7 @@
 import './App.css';
 
 import PS3 from './img/Ps3.png';
+import BackgroundPattern from './img/pattern.jpg'
 
 import PlayGame from './components/PlayGame';
 import MenuModal from './components/MenuModal';
@@ -10,9 +11,10 @@ import gameImage from './img/Ps3.png'; // temporary. this needs to be taken from
 function App() {
 	return (
 		<div className='App'>
-			<MenuModal />
+			{/* <MenuModal /> */}
+			<img src={BackgroundPattern} />
 			<PlayGame
-				isDisabled={true}
+				isDisabled={false}
 				gameImage={gameImage}
 			/>
 		</div>

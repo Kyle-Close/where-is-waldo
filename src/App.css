@@ -18,12 +18,22 @@ body {
 	align-items: center; /* center image vertically */
 }
 
+.App > img{
+	position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Make the image fill the container without distortion */
+    opacity: 0.15; 
+}
+
 .play-game-container {
 	position: relative;
 }
 
-.App > .play-game-enabled,
-.App > .play-game-disabled {
+.play-game-container > .play-game-enabled,
+.play-game-container > .play-game-disabled {
 	top: 0;
 	left: 0;
 	z-index: 2;
@@ -45,34 +55,7 @@ body {
 	z-index: 1;
 }
 
-.background {
-	position: absolute;
-	top: 0;
-	left: 0;
-	width: 100%;
-	height: 100%;
-	background-size: cover;
-	opacity: 0.25; /* Adjust the opacity as needed */
-}
-
 @media screen and (min-width: 1000px) {
-	.App > img {
-		max-width: 55vw; /* limit the image to 50% of the viewport width on larger screens */
-	}
-	.background {
-		position: absolute;
-		top: 50%;
-		left: 50%;
-		transform: translate(-50%, -50%);
-		width: 70%;
-		height: 100%;
-		background-size: cover;
-		background-repeat: no-repeat;
-		background-position: center center;
-		background-attachment: fixed;
-		background-size: cover;
-	}
-
 	.selection-card {
 		width: 60%;
 		align-self: center;
