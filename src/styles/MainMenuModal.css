@@ -146,3 +146,10 @@
 	box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 	transform: translateY(3px);
 }
+
+@media screen and (min-width: 1000px) {
+	.main-menu-modal{
+		width: 60%;
+		max-width: 60%;
+	}
+}
