@@ -129,4 +129,14 @@ body {
 		width: 60%;
 		align-self: center;
 	}
+	.play-game-container {
+		width: 60%;
+	}
+	.play-game-container::-webkit-scrollbar {
+		display: none;
+	}
+	.play-game-container {
+		-ms-overflow-style: none; /* IE and Edge */
+		scrollbar-width: none; /* Firefox */
+	}
 }

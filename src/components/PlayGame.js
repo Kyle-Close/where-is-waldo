@@ -3,8 +3,10 @@ import { useRef } from 'react';
 
 import PlayGameHeader from './PlayGameHeader';
 import cursorImg from '../img/dotted-square.png';
+import cursorFilled from '../img/dotted-square-filled.png';
 
 function PlayGame({ gameImage, isDisabled }) {
+	const [placedCursor, setPlacedCursor] = React.useState(null);
 	const className = isDisabled ? 'play-game-disabled' : 'play-game-enabled';
 	const myCustomCursor = {
 		cursor: `url(${cursorImg}), auto`,
@@ -25,6 +27,7 @@ function PlayGame({ gameImage, isDisabled }) {
 		console.log(
 			'Original Left: ' + originalX + ', Original Top: ' + originalY + '.'
 		);
+		setPlacedCursor({ x: x, y: y });
 	}
 
 	return (
@@ -38,6 +41,18 @@ function PlayGame({ gameImage, isDisabled }) {
 				src={gameImage}
 				alt='Game Image'
 			/>
+			{placedCursor && (
+				<img
+					src={cursorFilled}
+					style={{
+						position: 'absolute',
+						left: `${placedCursor.x}px`,
+						top: `${placedCursor.y}px`,
+						zIndex: '2',
+						width: '43px',
+					}}
+				/>
+			)}
 		</div>
 	);
 }
