@@ -1,7 +1,8 @@
 import './App.css';
+import { useEffect } from 'react';
 
 import PS3 from './img/Ps3.png';
-import BackgroundPattern from './img/pattern.jpg'
+import BackgroundPattern from './img/pattern.jpg';
 
 import PlayGame from './components/PlayGame';
 import MenuModal from './components/MenuModal';

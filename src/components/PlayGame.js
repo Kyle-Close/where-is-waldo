@@ -1,33 +1,45 @@
 import React from 'react';
-import { useRef } from 'react';
+import { useRef, useEffect } from 'react';
 
 import PlayGameHeader from './PlayGameHeader';
 import cursorImg from '../img/dotted-square.png';
 import cursorFilled from '../img/dotted-square-filled.png';
+import { func } from 'prop-types';
 
 function PlayGame({ gameImage, isDisabled }) {
+	const imgRef = useRef(); // To access image properties
 	const [placedCursor, setPlacedCursor] = React.useState(null);
+
 	const className = isDisabled ? 'play-game-disabled' : 'play-game-enabled';
+
 	const myCustomCursor = {
 		cursor: `url(${cursorImg}), auto`,
 	};
-	const imgRef = useRef(); // To access image properties
+
+	useEffect(() => {
+		if (!placedCursor) return;
+
+		const selectionBox = calculateBox(
+			getOriginalImageCoords([placedCursor.x, placedCursor.y], imgRef),
+			64
+		);
+
+		// For testing
+		const targetBox = {
+			topLeft: [300, 1200],
+			bottomRight: [364, 1264],
+		};
+
+		console.log(isOverlap(selectionBox, targetBox));
+	}, [placedCursor]);
 
 	function handleClick(event) {
-		const rect = imgRef.current.getBoundingClientRect();
-		const x = event.clientX - rect.left; //x position within the element.
-		const y = event.clientY - rect.top; //y position within the element.
+		const coords = getClickCoords(event, imgRef);
 
-		const scaleX = imgRef.current.naturalWidth / rect.width; // scaling factor in x-direction
-		const scaleY = imgRef.current.naturalHeight / rect.height; // scaling factor in y-direction
-
-		const originalX = x * scaleX; // x-position in original image size
-		const originalY = y * scaleY; // y-position in original image size
-
-		console.log(
-			'Original Left: ' + originalX + ', Original Top: ' + originalY + '.'
-		);
-		setPlacedCursor({ x: x, y: y });
+		setPlacedCursor({
+			x: coords[0],
+			y: coords[1],
+		});
 	}
 
 	return (
@@ -49,12 +61,53 @@ function PlayGame({ gameImage, isDisabled }) {
 						left: `${placedCursor.x}px`,
 						top: `${placedCursor.y}px`,
 						zIndex: '2',
-						width: '43px',
 					}}
 				/>
 			)}
 		</div>
 	);
+}
+
+function getClickCoords(event, imgRef) {
+	const rect = imgRef.current.getBoundingClientRect();
+
+	const x = event.clientX - rect.left; //x position within the element.
+	const y = event.clientY - rect.top; //y position within the element.
+
+	return [x, y];
+}
+
+function getOriginalImageCoords(coords, imgRef) {
+	const rect = imgRef.current.getBoundingClientRect();
+	const [x, y] = coords;
+
+	const scaleX = imgRef.current.naturalWidth / rect.width; // scaling factor in x-direction
+	const scaleY = imgRef.current.naturalHeight / rect.height; // scaling factor in y-direction
+
+	const originalX = Math.round(x * scaleX); // x-position in original image size
+	const originalY = Math.round(y * scaleY); // y-position in original image size
+
+	return [originalX, originalY];
+}
+
+function calculateBox(topLeftCoords, size) {
+	return {
+		topLeft: topLeftCoords,
+		bottomRight: [topLeftCoords[0] + size, topLeftCoords[1] + size],
+	};
+}
+
+function isOverlap(selectionBox, targetBox) {
+	if (
+		selectionBox.topLeft[0] <= targetBox.bottomRight[0] &&
+		selectionBox.bottomRight[0] >= targetBox.topLeft[0] &&
+		selectionBox.topLeft[1] <= targetBox.bottomRight[1] &&
+		selectionBox.bottomRight[1] >= targetBox.topLeft[1]
+	) {
+		return true;
+	} else {
+		return false;
+	}
 }
 
 export default PlayGame;
