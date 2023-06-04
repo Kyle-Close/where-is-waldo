@@ -87,14 +87,14 @@ function getOriginalImageCoords(coords, imgRef) {
 	return [originalX, originalY];
 }
 
-function calculateBox(topLeftCoords, size) {
+export function calculateBox(topLeftCoords, size) {
 	return {
 		topLeft: topLeftCoords,
 		bottomRight: [topLeftCoords[0] + size, topLeftCoords[1] + size],
 	};
 }
 
-function isOverlap(selectionBox, targetBox) {
+export function isOverlap(selectionBox, targetBox) {
 	if (
 		selectionBox.topLeft[0] <= targetBox.bottomRight[0] &&
 		selectionBox.bottomRight[0] >= targetBox.topLeft[0] &&
