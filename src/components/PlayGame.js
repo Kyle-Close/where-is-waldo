@@ -19,10 +19,9 @@ function PlayGame({ gameImage, isDisabled }) {
 	useEffect(() => {
 		if (!placedCursor) return;
 
-		const selectionBox = calculateBox(
-			getOriginalImageCoords([placedCursor.x, placedCursor.y], imgRef),
-			64
-		);
+		const { x, y } = placedCursor;
+		const originalCoords = getOriginalImageCoords([x, y], imgRef);
+		const selectionBox = calculateBox(originalCoords, 64);
 
 		// For testing
 		const targetBox = {
