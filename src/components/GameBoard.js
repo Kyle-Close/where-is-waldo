@@ -1,12 +1,13 @@
-import React from 'react';
-import { useRef, useEffect } from 'react';
-
+import React, { useRef, useEffect, useState } from 'react';
 import cursorImg from '../img/dotted-square.png';
 import cursorFilled from '../img/dotted-square-filled.png';
 
 function GameBoard({ gameImage, isDisabled }) {
 	const imgRef = useRef(); // To access image properties
-	const [placedCursor, setPlacedCursor] = React.useState(null);
+	const targetRef = useRef(); // To access target div properties
+	const [placedCursor, setPlacedCursor] = useState(null);
+	const [styles, setStyles] = useState(null);
+	let style;
 
 	const className = isDisabled ? 'play-game-disabled' : 'play-game-enabled';
 
@@ -30,6 +31,29 @@ function GameBoard({ gameImage, isDisabled }) {
 		console.log(isOverlap(selectionBox, targetBox));
 	}, [placedCursor]);
 
+	useEffect(() => {
+		if (imgRef.current) {
+			imgRef.current.addEventListener('load', handleImageLoad);
+			return () => imgRef.current.removeEventListener('load', handleImageLoad);
+		}
+	}, []); // Empty dependency array to run only once on mount
+
+	function handleImageLoad() {
+		//const coords = getOriginalImageCoords([300, 100], imgRef);
+		const { naturalWidth, naturalHeight } = imgRef.current;
+
+		const targetStyle = {
+			position: 'absolute',
+			top: `${naturalWidth * 300}px`, // Adjust the desired top position based on the coordinates
+			left: `${naturalHeight * 600}px`, // Adjust the desired left position based on the coordinates
+			width: '64px',
+			height: '64px',
+			border: '2px solid white',
+			zIndex: '3',
+		};
+		setStyles(targetStyle);
+	}
+
 	function handleClick(event) {
 		const coords = getClickCoords(event, imgRef);
 
@@ -49,6 +73,11 @@ function GameBoard({ gameImage, isDisabled }) {
 				src={gameImage}
 				alt='Game Image'
 			/>
+			<div
+				ref={targetRef}
+				className='target'
+				style={styles}
+			></div>
 			{placedCursor && (
 				<img
 					src={cursorFilled}
