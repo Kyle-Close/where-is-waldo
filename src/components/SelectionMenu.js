@@ -20,7 +20,8 @@ function SelectionMenu({
 	));
 
 	const selectStyle = {
-		backgroundColor: '#ffffff', // Set the desired background color here
+		backgroundColor: '#ffffff',
+		height: '2.5rem',
 	};
 
 	const handleSelectionChange = (event) => {
