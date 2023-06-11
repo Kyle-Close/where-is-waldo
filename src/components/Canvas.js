@@ -6,7 +6,7 @@ import '../styles/Canvas.css';
 
 function Canvas({
 	isDevMode,
-	imageUrl,
+	image,
 	rectangles,
 	setRectangles,
 	handleClick,
@@ -139,7 +139,7 @@ function Canvas({
 		const ctx = canvas.getContext('2d');
 
 		img.current = new Image();
-		img.current.src = imageUrl;
+		img.current.src = image;
 
 		img.current.onload = function () {
 			drawImageScaled(canvas, ctx, img.current);
@@ -177,7 +177,7 @@ function Canvas({
 		return () => {
 			window.removeEventListener('resize', handleResize);
 		};
-	}, [imageUrl, rectangles, numRects, isDevMode, isSelection]);
+	}, [image, rectangles, numRects, isDevMode, isSelection]);
 
 	useEffect(() => {
 		if (isDevMode || isSelection) return;

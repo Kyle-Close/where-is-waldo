@@ -6,7 +6,7 @@ import { getMenuCards } from '../firebase';
 import '../styles/MainMenuModal.css';
 import PS3 from '../img/Ps3.png';
 
-function MainMenuModal() {
+function MainMenuModal({ setIsMainMenuActive, setCurrentMap }) {
 	const [currentlySelected, setCurrentlySelected] = React.useState(-1);
 	const [dbCardInfo, setDbCardInfo] = React.useState([]);
 
@@ -35,6 +35,13 @@ function MainMenuModal() {
 		setCurrentlySelected(index);
 	}
 
+	function startGame() {
+		if (currentlySelected !== -1) {
+			setCurrentMap(currentlySelected);
+			setIsMainMenuActive(false);
+		}
+	}
+
 	// Variables
 	let menuCards = dbCardInfo.map((card, index) => (
 		<MenuSelectCard
@@ -57,7 +64,12 @@ function MainMenuModal() {
 			<div className='menu-contents'>
 				<div className='map-selection-cards'>{menuCards}</div>
 			</div>
-			<button className='play-game-button'>Play</button>
+			<button
+				onClick={startGame}
+				className='play-game-button'
+			>
+				Play
+			</button>
 		</div>
 	);
 }

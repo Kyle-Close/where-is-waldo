@@ -1,16 +1,16 @@
 import './App.css';
-import { useState } from 'react';
-
-import BackgroundPattern from './img/pattern.jpg';
+import React from 'react';
 
 import MenuModal from './components/MenuModal';
 import Canvas from './components/Canvas';
 import PlayGameHeader from './components/PlayGameHeader';
-
-import gameImage from './img/Ps3.png';
+import { getAllMaps } from './firebase';
 
 function App() {
-	const [rectangles, setRectangles] = useState([
+	const [isMainMenuActive, setIsMainMenuActive] = React.useState(true);
+	const [allMaps, setAllmaps] = React.useState(null);
+	const [currentMap, setCurrentMap] = React.useState(null);
+	const [rectangles, setRectangles] = React.useState([
 		{
 			character: 'Kratos',
 			x: 415,
@@ -27,6 +27,19 @@ function App() {
 		},
 	]);
 
+	React.useEffect(() => {
+		const fetchAllMaps = async () => {
+			const maps = await getAllMaps();
+			if (!allMaps) setAllmaps(maps);
+		};
+		fetchAllMaps();
+	}, []);
+
+	function selectCurrentMapFromArray(index) {
+		const currentMap = allMaps[index];
+		setCurrentMap(currentMap);
+	}
+
 	function handleClickDev(event, img, width, height) {
 		const { x, y } = getScaledrectangles(event, img);
 
@@ -39,7 +52,7 @@ function App() {
 
 	function handleRightClickDev(e) {
 		e.preventDefault();
-		if (rectangles.length === 0) return; // Don't allow removal if the array is empty
+		if (rectangles.length === 0) return;
 		setRectangles((prevRectangles) => {
 			const newRectangles = [...prevRectangles];
 			const removedCoords = newRectangles.pop();
@@ -62,19 +75,26 @@ function App() {
 
 	return (
 		<div className='App'>
-			{/* <MenuModal /> */}
-			{rectangles && (
-				<>
-					<PlayGameHeader />
-					<Canvas
-						isDevMode={false}
-						handleClick={handleClickDev}
-						handleRightClick={handleRightClickDev}
-						imageUrl={gameImage}
-						rectangles={rectangles}
-						setRectangles={setRectangles}
-					/>
-				</>
+			{isMainMenuActive ? (
+				<MenuModal
+					setIsMainMenuActive={setIsMainMenuActive}
+					setCurrentMap={selectCurrentMapFromArray}
+				/>
+			) : (
+				rectangles &&
+				currentMap && (
+					<>
+						<PlayGameHeader />
+						<Canvas
+							isDevMode={false}
+							handleClick={handleClickDev}
+							handleRightClick={handleRightClickDev}
+							image={currentMap}
+							rectangles={rectangles}
+							setRectangles={setRectangles}
+						/>
+					</>
+				)
 			)}
 		</div>
 	);
