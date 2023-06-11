@@ -2,6 +2,8 @@ import React, { useRef, useEffect } from 'react';
 import CanvasDev from './CanvasDev';
 import SelectionMenu from './SelectionMenu';
 
+import '../styles/Canvas.css';
+
 function Canvas({
 	isDevMode,
 	imageUrl,

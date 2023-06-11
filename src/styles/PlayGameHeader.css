@@ -1,0 +1,51 @@
+.play-game-header {
+	z-index: 3;
+	position: sticky;
+	top: 3%;
+	left: 0;
+	right: 0;
+	margin: auto;
+	height: 2.5rem;
+	width: 80%;
+	border-radius: 8px;
+	display: grid;
+	grid-template-columns: 25% 25% 25% 25%;
+	box-shadow: 0 2px 6px rgba(0, 0, 0, 1);
+	background-color: black;
+	gap: 2px;
+}
+
+.play-game-header > div {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	background-color: white;
+}
+
+.play-game-header > div:first-child {
+	border-top-left-radius: 8px;
+	border-bottom-left-radius: 8px;
+}
+
+.play-game-header > div:last-of-type {
+	border-top-right-radius: 8px;
+	border-bottom-right-radius: 8px;
+}
+
+.play-game-header > div:last-of-type > h3 {
+	font-family: 'Monomaniac One', sans-serif;
+	color: rgb(0, 17, 255);
+}
+
+.play-game-header > h3 {
+	font-family: 'Monomaniac One', sans-serif;
+	place-self: center;
+	color: blue;
+	font-size: 1.5rem;
+}
+
+.play-game-header > div > img {
+	max-width: 100%;
+	max-height: 2rem;
+	justify-self: center;
+}

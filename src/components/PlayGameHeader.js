@@ -5,28 +5,30 @@ import ratchet from '../img/ratchet.webp';
 import kratos from '../img/Kratos.png';
 import sackboy from '../img/sackboy.webp';
 
+import '../styles/PlayGameHeader.css';
+
 function PlayGameHeader() {
-    const [seconds, setSeconds] = React.useState(0);
-    const [startTime, setStartTime] = React.useState();
+	const [seconds, setSeconds] = React.useState(0);
+	const [startTime, setStartTime] = React.useState();
 
-    // Get time on first render for firebase
-    React.useEffect(() => {
-        setStartTime(Timestamp.now())
-    }, []);
+	// Get time on first render for firebase
+	React.useEffect(() => {
+		setStartTime(Timestamp.now());
+	}, []);
 
-  React.useEffect(() => {
-    const interval = setInterval(() => {
-      setSeconds(seconds => seconds + 1);
-    }, 1000);
+	React.useEffect(() => {
+		const interval = setInterval(() => {
+			setSeconds((seconds) => seconds + 1);
+		}, 1000);
 
-    // Clear interval on unmount
-    return () => {
-      clearInterval(interval);
-    };
-  }, []);
-     function handleClick(){
-        console.log(Timestamp.now() - startTime)
-     }
+		// Clear interval on unmount
+		return () => {
+			clearInterval(interval);
+		};
+	}, []);
+	function handleClick() {
+		console.log(Timestamp.now() - startTime);
+	}
 	return (
 		<div className='play-game-header'>
 			<div>
