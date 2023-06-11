@@ -50,8 +50,9 @@ function MainMenuModal() {
 		<div className='main-menu-modal'>
 			<img src={PS3} />
 			<div className='menu-title'>
-				<p>pixel<span>Pursuit</span></p>
-				
+				<p>
+					pixel<span>Pursuit</span>
+				</p>
 			</div>
 			<div className='menu-contents'>
 				<div className='map-selection-cards'>{menuCards}</div>
@@ -59,27 +60,6 @@ function MainMenuModal() {
 			<button className='play-game-button'>Play</button>
 		</div>
 	);
-}
-
-async function fetchMenuCards() {
-	const cards = await getMenuCards();
-	console.log(cards);
-}
-
-function modifyArrayProperty(arr, index, property, newValue) {
-	// Create a new array by mapping over the original array
-	const newArr = arr.map((obj, i) => {
-		// If the current index matches the desired index, modify the property
-		if (i === index) {
-			// Return a new object with the modified property
-			return { ...obj, [property]: newValue };
-		}
-		// If it's not the desired index, return the original object
-		return obj;
-	});
-
-	// Return the modified array
-	return newArr;
 }
 
 export default MainMenuModal;

@@ -25,50 +25,6 @@ body {
 
 .App {
 	width: 100%; /* prevent child elements from overflowing */
-	display: flex; /* added to center image */
-	justify-content: center; /* center image horizontally */
-	align-items: center; /* center image vertically */
-}
-
-.App > img {
-	position: absolute;
-	top: 0;
-	left: 0;
-	width: 100%;
-	height: 100%;
-	object-fit: cover; /* Make the image fill the container without distortion */
-	opacity: 0.4;
-}
-
-.play-game-container {
-	position: absolute;
-	width: 100%;
-	top: 0%;
-	height: 100%;
-}
-
-.play-game-container > .play-game-enabled,
-.play-game-container > .play-game-disabled {
-	position: absolute;
-	top: 0;
-	left: 0;
-	z-index: 2;
-	width: 100%;
-	overflow: auto;
-	object-fit: contain;
-	box-shadow: 0px 0px 15px 5px rgba(255, 255, 255, 0.75);
-}
-
-.play-game-disabled {
-	pointer-events: none;
-	opacity: 0.5;
-	position: absolute;
-	top: 0;
-	left: 0;
-	width: 100%;
-	height: 100%;
-	object-fit: cover;
-	z-index: 1;
 }
 
 .play-game-header {
@@ -122,21 +78,4 @@ body {
 	max-width: 100%;
 	max-height: 2rem;
 	justify-self: center;
-}
-
-@media screen and (min-width: 1000px) {
-	.selection-card {
-		width: 60%;
-		align-self: center;
-	}
-	.play-game-container {
-		width: 60%;
-	}
-	.play-game-container::-webkit-scrollbar {
-		display: none;
-	}
-	.play-game-container {
-		-ms-overflow-style: none; /* IE and Edge */
-		scrollbar-width: none; /* Firefox */
-	}
 }
