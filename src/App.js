@@ -4,8 +4,12 @@ import React from 'react';
 import MenuModal from './components/MenuModal';
 import Canvas from './components/Canvas';
 import PlayGameHeader from './components/PlayGameHeader';
-import { getAllMaps, getAllMapsData, setFirebaseMapData } from './firebase';
-import { func } from 'prop-types';
+import {
+	getAllMaps,
+	getAllMapsData,
+	setFirebaseMapData,
+	retrieveFoldersAndImages,
+} from './firebase';
 
 function App() {
 	const [isMainMenuActive, setIsMainMenuActive] = React.useState(true);
@@ -14,7 +18,10 @@ function App() {
 	const [allMapsData, setAllMapsData] = React.useState(null);
 	const [currentMapData, setCurrentMapData] = React.useState(null);
 	const [isGameOver, setIsGameOver] = React.useState(false);
-	const [targetName, setTargetName] = React.useState(null)
+	const [targetName, setTargetName] = React.useState(null);
+
+	const folderData = retrieveFoldersAndImages();
+	console.log('Here', folderData);
 
 	const maps = [
 		{
@@ -65,17 +72,17 @@ function App() {
 		//...more maps
 	];
 
-	function lightUpFoundTarget(targetName){
+	function lightUpFoundTarget(targetName) {
 		setTargetName(targetName);
 	}
 
 	React.useEffect(() => {
-		console.log(currentMapData)
-		if(currentMapData && currentMapData.rectangles.length === 0){
+		console.log(currentMapData);
+		if (currentMapData && currentMapData.rectangles.length === 0) {
 			//game over
-			setIsGameOver(true)
+			setIsGameOver(true);
 		}
-	}, [currentMapData])
+	}, [currentMapData]);
 
 	React.useEffect(() => {
 		//setFirebaseMapData(maps);
@@ -131,9 +138,9 @@ function App() {
 		}); */
 	}
 
-	function resetGame(){
+	function resetGame() {
 		setIsGameOver(false);
-		setIsMainMenuActive(true)
+		setIsMainMenuActive(true);
 	}
 
 	function getScaledrectangles(e, img) {
@@ -157,7 +164,10 @@ function App() {
 				currentMapData &&
 				currentMap && (
 					<>
-						<PlayGameHeader currentMapData={currentMapData} targetName={targetName}/>
+						<PlayGameHeader
+							currentMapData={currentMapData}
+							targetName={targetName}
+						/>
 						<Canvas
 							isDevMode={false}
 							handleClick={handleClickDev}
