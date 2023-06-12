@@ -155,6 +155,7 @@ function App() {
 							rectangles={currentMapData.rectangles}
 							setCurrentMapData={setCurrentMapData}
 							isGameOver={isGameOver}
+							setIsGameOver={setIsGameOver}
 						/>
 					</>
 				)

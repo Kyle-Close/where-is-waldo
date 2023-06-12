@@ -1,8 +1,7 @@
 import React, { useRef, useEffect } from 'react';
 import CanvasDev from './CanvasDev';
 import SelectionMenu from './SelectionMenu';
-import BasicModal from './Modal'
-
+import TransitionsModal from './Modal';
 import '../styles/Canvas.css';
 
 function Canvas({
@@ -12,7 +11,8 @@ function Canvas({
 	setCurrentMapData,
 	handleClick,
 	handleRightClick,
-	isGameOver
+	isGameOver,
+	setIsGameOver
 }) {
 	// States
 	const [rectHeight, setRectHeight] = React.useState(50);
@@ -223,6 +223,11 @@ function Canvas({
 			)}
 			{!isDevMode && (
 				<>
+				<button style={{position:'absolute', zIndex: '5'}} onClick={() => {
+					setIsGameOver(true)
+				}}>
+					Set isGameOver
+					</button>
 					<canvas
 						ref={canvasRef}
 						onClick={placeSelectionBox}
@@ -237,7 +242,7 @@ function Canvas({
 							selectedRect={selectedRect}
 						/>
 					)}
-					{ isGameOver && (<BasicModal />)}
+					{ isGameOver && (<TransitionsModal />)}
 				</>
 			)}
 		</>
