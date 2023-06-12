@@ -12,6 +12,7 @@ function App() {
 	const [currentMap, setCurrentMap] = React.useState(null);
 	const [allMapsData, setAllMapsData] = React.useState(null);
 	const [currentMapData, setCurrentMapData] = React.useState(null);
+	const [isGameOver, setIsGameOver] = React.useState(false)
 
 	const maps = [
 		{
@@ -61,6 +62,14 @@ function App() {
 		},
 		//...more maps
 	];
+
+	React.useEffect(() => {
+		console.log(currentMapData)
+		if(currentMapData && currentMapData.rectangles.length === 0){
+			//game over
+			setIsGameOver(true)
+		}
+	}, [currentMapData])
 
 	React.useEffect(() => {
 		//setFirebaseMapData(maps);
@@ -145,6 +154,7 @@ function App() {
 							image={currentMap}
 							rectangles={currentMapData.rectangles}
 							setCurrentMapData={setCurrentMapData}
+							isGameOver={isGameOver}
 						/>
 					</>
 				)

@@ -1,6 +1,7 @@
 import React, { useRef, useEffect } from 'react';
 import CanvasDev from './CanvasDev';
 import SelectionMenu from './SelectionMenu';
+import BasicModal from './Modal'
 
 import '../styles/Canvas.css';
 
@@ -11,6 +12,7 @@ function Canvas({
 	setCurrentMapData,
 	handleClick,
 	handleRightClick,
+	isGameOver
 }) {
 	// States
 	const [rectHeight, setRectHeight] = React.useState(50);
@@ -235,6 +237,7 @@ function Canvas({
 							selectedRect={selectedRect}
 						/>
 					)}
+					{ isGameOver && (<BasicModal />)}
 				</>
 			)}
 		</>
