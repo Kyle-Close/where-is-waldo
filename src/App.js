@@ -125,6 +125,11 @@ function App() {
 		}); */
 	}
 
+	function resetGame(){
+		setIsGameOver(false);
+		setIsMainMenuActive(true)
+	}
+
 	function getScaledrectangles(e, img) {
 		// Gets rectangles in terms of img original size
 		var boundingRect = e.target.getBoundingClientRect();
@@ -156,6 +161,7 @@ function App() {
 							setCurrentMapData={setCurrentMapData}
 							isGameOver={isGameOver}
 							setIsGameOver={setIsGameOver}
+							resetGame={resetGame}
 						/>
 					</>
 				)

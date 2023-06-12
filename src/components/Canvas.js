@@ -12,7 +12,8 @@ function Canvas({
 	handleClick,
 	handleRightClick,
 	isGameOver,
-	setIsGameOver
+	setIsGameOver,
+	resetGame
 }) {
 	// States
 	const [rectHeight, setRectHeight] = React.useState(50);
@@ -242,7 +243,7 @@ function Canvas({
 							selectedRect={selectedRect}
 						/>
 					)}
-					{ isGameOver && (<TransitionsModal />)}
+					{ isGameOver && (<TransitionsModal resetGame={resetGame}/>)}
 				</>
 			)}
 		</>

@@ -30,7 +30,8 @@ const style = {
   };
   
 
-  export default function TransitionsModal() {
+  export default function TransitionsModal({resetGame}) {
+
     const [open, setOpen] = React.useState(true);
     
     const handleClose = (e, reason) => {
@@ -42,6 +43,7 @@ const style = {
       // put your code to execute when "Play Again" is clicked here
       console.log("Play Again clicked");
       handleClose();
+      resetGame();
     }
   
     const handleEnterTime = () => {
