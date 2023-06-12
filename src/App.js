@@ -5,6 +5,7 @@ import MenuModal from './components/MenuModal';
 import Canvas from './components/Canvas';
 import PlayGameHeader from './components/PlayGameHeader';
 import { getAllMaps, getAllMapsData, setFirebaseMapData } from './firebase';
+import { func } from 'prop-types';
 
 function App() {
 	const [isMainMenuActive, setIsMainMenuActive] = React.useState(true);
@@ -12,7 +13,8 @@ function App() {
 	const [currentMap, setCurrentMap] = React.useState(null);
 	const [allMapsData, setAllMapsData] = React.useState(null);
 	const [currentMapData, setCurrentMapData] = React.useState(null);
-	const [isGameOver, setIsGameOver] = React.useState(false)
+	const [isGameOver, setIsGameOver] = React.useState(false);
+	const [targetName, setTargetName] = React.useState(null)
 
 	const maps = [
 		{
@@ -62,6 +64,10 @@ function App() {
 		},
 		//...more maps
 	];
+
+	function lightUpFoundTarget(targetName){
+		setTargetName(targetName);
+	}
 
 	React.useEffect(() => {
 		console.log(currentMapData)
@@ -151,7 +157,7 @@ function App() {
 				currentMapData &&
 				currentMap && (
 					<>
-						<PlayGameHeader />
+						<PlayGameHeader currentMapData={currentMapData} targetName={targetName}/>
 						<Canvas
 							isDevMode={false}
 							handleClick={handleClickDev}
@@ -159,6 +165,7 @@ function App() {
 							image={currentMap}
 							rectangles={currentMapData.rectangles}
 							setCurrentMapData={setCurrentMapData}
+							lightUpFoundTarget={lightUpFoundTarget}
 							isGameOver={isGameOver}
 							setIsGameOver={setIsGameOver}
 							resetGame={resetGame}

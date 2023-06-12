@@ -11,6 +11,7 @@ function Canvas({
 	setCurrentMapData,
 	handleClick,
 	handleRightClick,
+	lightUpFoundTarget,
 	isGameOver,
 	setIsGameOver,
 	resetGame
@@ -241,6 +242,8 @@ function Canvas({
 							setCurrentMapData={setCurrentMapData}
 							rectanglesOverlap={rectanglesOverlap}
 							selectedRect={selectedRect}
+							lightUpFoundTarget={lightUpFoundTarget}
+							
 						/>
 					)}
 					{ isGameOver && (<TransitionsModal resetGame={resetGame}/>)}

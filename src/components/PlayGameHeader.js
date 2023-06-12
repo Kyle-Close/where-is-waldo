@@ -7,9 +7,25 @@ import sackboy from '../img/sackboy.webp';
 
 import '../styles/PlayGameHeader.css';
 
-function PlayGameHeader() {
+function PlayGameHeader({currentMapData, targetName}) {
 	const [seconds, setSeconds] = React.useState(0);
 	const [startTime, setStartTime] = React.useState();
+	const originalMapData = React.useRef();
+
+	React.useEffect(() => {
+		originalMapData.current = JSON.parse(JSON.stringify(currentMapData));
+	}, []);
+
+	React.useEffect(() => {
+		if(targetName && currentMapData)getFoundTargetIndex(targetName);
+	}, [currentMapData]);
+
+	function getFoundTargetIndex(targetName){
+		const foundIndex = originalMapData.current.rectangles.findIndex(
+			(data) => data.character === targetName
+		  );
+		  console.log(foundIndex);
+	}
 
 	// Get time on first render for firebase
 	React.useEffect(() => {
@@ -31,7 +47,7 @@ function PlayGameHeader() {
 	}
 	return (
 		<div className='play-game-header'>
-			<div>
+			<div style={{backgroundColor: 'green'}}>
 				<img src={ratchet} />
 			</div>
 			<div>
