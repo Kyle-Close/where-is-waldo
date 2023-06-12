@@ -4,7 +4,7 @@ import { Select, MenuItem, FormControl } from '@mui/material';
 function SelectionMenu({
 	style,
 	rectangles,
-	setRectangles,
+	setCurrentMapData,
 	rectanglesOverlap,
 	selectedRect,
 }) {
@@ -38,11 +38,13 @@ function SelectionMenu({
 		console.log(targetRect, selectedRect);
 
 		if (rectanglesOverlap(selectedRect, targetRect)) {
-			setRectangles((prev) => {
-				const currentRects = prev;
+			setCurrentMapData((prevMapData) => {
+				const currentRects = prevMapData.rectangles;
 				currentRects.splice(index, 1);
-				console.log(currentRects);
-				return [...currentRects];
+				return {
+					mapName: prevMapData.mapName,
+					rectangles: [...currentRects],
+				};
 			});
 		} else console.log('Not overlapping');
 	};

@@ -1,5 +1,11 @@
 import { initializeApp } from 'firebase/app';
-import { getFirestore, collection, getDocs } from 'firebase/firestore/lite';
+import {
+	getFirestore,
+	collection,
+	getDocs,
+	doc,
+	setDoc,
+} from 'firebase/firestore/lite';
 
 import { getStorage, ref, listAll, getDownloadURL } from 'firebase/storage';
 
@@ -42,4 +48,19 @@ export async function getAllMaps() {
 	}
 
 	return urls;
+}
+
+export async function getAllMapsData() {
+	const db = getFirestore();
+	const querySnapshot = await getDocs(collection(db, 'maps_test1'));
+	const documents = querySnapshot.docs.map((doc) => doc.data());
+
+	return documents;
+}
+
+export async function setFirebaseMapData(mapsData) {
+	mapsData.forEach(async (map) => {
+		await setDoc(doc(db, 'maps_test1', map.mapName), map);
+	});
+	console.log('Documents successfully written!');
 }

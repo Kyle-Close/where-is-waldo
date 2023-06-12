@@ -8,7 +8,7 @@ function Canvas({
 	isDevMode,
 	image,
 	rectangles,
-	setRectangles,
+	setCurrentMapData,
 	handleClick,
 	handleRightClick,
 }) {
@@ -230,7 +230,7 @@ function Canvas({
 						<SelectionMenu
 							style={selectionBoxStyles}
 							rectangles={rectangles}
-							setRectangles={setRectangles}
+							setCurrentMapData={setCurrentMapData}
 							rectanglesOverlap={rectanglesOverlap}
 							selectedRect={selectedRect}
 						/>
