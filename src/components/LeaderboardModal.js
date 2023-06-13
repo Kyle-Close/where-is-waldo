@@ -9,6 +9,7 @@ import TableCell from '@mui/material/TableCell';
 import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
+import Button from '@mui/material/Button';
 import { getLeaderboard } from '../firebase';
 
 function LeaderboardModal() {
@@ -55,9 +56,14 @@ function LeaderboardModal() {
 					<Typography
 						variant='h6'
 						id='leaderboard-modal-title'
+						sx={{
+							marginBottom: 2, // adds a margin-bottom of 16px (1 = 8px in Material UI)
+							textAlign: 'center', // centers the text
+						}}
 					>
 						Leaderboard
 					</Typography>
+
 					<TableContainer component={Paper}>
 						<Table>
 							<TableHead>
@@ -78,6 +84,18 @@ function LeaderboardModal() {
 							</TableBody>
 						</Table>
 					</TableContainer>
+					<Button
+						variant='contained'
+						color='primary'
+						sx={{
+							marginTop: 2, // this adds a margin-top of 16px (1 = 8px in Material UI)
+							display: 'block', // this makes the button a block-level element
+							marginLeft: 'auto', // these two lines center the block-level element
+							marginRight: 'auto',
+						}}
+					>
+						Play Again
+					</Button>
 				</Box>
 			</Modal>
 		</div>
