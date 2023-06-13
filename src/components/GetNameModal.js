@@ -6,6 +6,7 @@ import DialogTitle from '@mui/material/DialogTitle';
 import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogActions from '@mui/material/DialogActions';
+import Box from '@mui/material/Box'; // import Box for centering
 
 function GetNameModal({ setPlayerName }) {
 	const [open, setOpen] = useState(true);
@@ -37,9 +38,22 @@ function GetNameModal({ setPlayerName }) {
 				onClose={handleClose}
 				aria-labelledby='form-dialog-title'
 			>
-				<DialogTitle id='form-dialog-title'>Enter Your Name</DialogTitle>
+				<DialogTitle
+					id='form-dialog-title'
+					sx={{ textAlign: 'center' }}
+				>
+					Enter Your Name
+				</DialogTitle>
 				<DialogContent>
-					<DialogContentText>Please enter your name.</DialogContentText>
+					<Box
+						sx={{
+							display: 'flex',
+							justifyContent: 'center',
+							alignItems: 'center',
+						}}
+					>
+						<DialogContentText>Please enter your name.</DialogContentText>
+					</Box>
 					<TextField
 						autoFocus
 						margin='dense'
@@ -48,18 +62,17 @@ function GetNameModal({ setPlayerName }) {
 						type='text'
 						fullWidth
 						onChange={handleNameChange}
+						sx={{ mt: 2 }} // Adds some margin at the top
 					/>
 				</DialogContent>
-				<DialogActions>
-					<Button
-						onClick={handleClose}
-						color='primary'
-					>
-						Cancel
-					</Button>
+				<DialogActions sx={{ justifyContent: 'center' }}>
+					{' '}
 					<Button
 						onClick={handleSubmit}
 						color='primary'
+						variant='contained' // Make the button filled
+						size='large' // Increase the size of the button
+						sx={{ px: 4, mb: 3 }} // Add some padding to the sides of the button
 					>
 						Submit
 					</Button>

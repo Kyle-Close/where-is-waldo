@@ -17,7 +17,7 @@ function Canvas({
 	setIsGameOver,
 	resetGame,
 	setEndTime,
-	totalTime
+	totalTime,
 }) {
 	// States
 	const [rectHeight, setRectHeight] = React.useState(50);
@@ -211,10 +211,10 @@ function Canvas({
 	}, [canvasRef, isSelection]); // Add any other dependencies for this useEffect here.
 
 	useEffect(() => {
-		if(isGameOver){
+		if (isGameOver) {
 			setEndTime(Timestamp.now().seconds);
 		}
-	}, [isGameOver])
+	}, [isGameOver]);
 
 	return (
 		<>
@@ -234,11 +234,6 @@ function Canvas({
 			)}
 			{!isDevMode && (
 				<>
-				<button style={{position:'absolute', zIndex: '5'}} onClick={() => {
-					setIsGameOver(true)
-				}}>
-					Set isGameOver
-					</button>
 					<canvas
 						ref={canvasRef}
 						onClick={placeSelectionBox}
@@ -252,10 +247,14 @@ function Canvas({
 							rectanglesOverlap={rectanglesOverlap}
 							selectedRect={selectedRect}
 							lightUpFoundTarget={lightUpFoundTarget}
-							
 						/>
 					)}
-					{ isGameOver && (<TransitionsModal totalTime={totalTime} resetGame={resetGame}/>)}
+					{isGameOver && (
+						<TransitionsModal
+							totalTime={totalTime}
+							resetGame={resetGame}
+						/>
+					)}
 				</>
 			)}
 		</>

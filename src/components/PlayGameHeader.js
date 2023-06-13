@@ -1,10 +1,6 @@
 import React from 'react';
 import { Timestamp } from 'firebase/firestore/lite';
 
-import ratchet from '../img/ratchet.webp';
-import kratos from '../img/Kratos.png';
-import sackboy from '../img/sackboy.webp';
-
 import '../styles/PlayGameHeader.css';
 
 function PlayGameHeader({

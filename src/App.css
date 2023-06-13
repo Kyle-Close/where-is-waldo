@@ -23,3 +23,9 @@ body {
 	position: absolute;
 	height: 100%;
 }
+
+@media (min-width: 1001px) {
+	.App {
+		position: absolute;
+	}
+}

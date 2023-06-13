@@ -80,34 +80,32 @@ function App() {
 		let currentMapData;
 
 		allMapsData.forEach((mapData) => {
-			if (mapData.mapName.includes(index)) currentMapData = mapData;
+			if (mapData.mapName.includes(index)) {
+				currentMapData = mapData;
+			}
 		});
 
 		setCurrentMapData(currentMapData);
 	}
 
 	function handleClickDev(event, img, width, height) {
-		/* 		const { x, y } = getScaledrectangles(event, img);
+		const { x, y } = getScaledrectangles(event, img);
 
 		console.log(` ++ Placing rect at [${x}, ${y}]...`);
-		setRectangles((prevRectangles) => [
-			...prevRectangles,
-			{ x, y, width, height },
-		]); */
 	}
 
-	function handleRightClickDev(e) {
-		/* 		e.preventDefault();
-		if (rectangles.length === 0) return;
-		setRectangles((prevRectangles) => {
+	/* 	function handleRightClickDev(e) {
+		e.preventDefault();
+		if (currentMapData.length === 0) return;
+		setCurrentMapData((prevRectangles) => {
 			const newRectangles = [...prevRectangles];
 			const removedCoords = newRectangles.pop();
 			console.log(
 				` -- Removing rect at [${removedCoords.x}, ${removedCoords.y}]`
 			);
 			return newRectangles;
-		}); */
-	}
+		});
+	} */
 
 	function resetGame() {
 		console.log('Resetting Game');
@@ -150,7 +148,7 @@ function App() {
 						<Canvas
 							isDevMode={false}
 							handleClick={handleClickDev}
-							handleRightClick={handleRightClickDev}
+							/* handleRightClick={handleRightClickDev} */
 							image={currentMap}
 							rectangles={currentMapData.rectangles}
 							setCurrentMapData={setCurrentMapData}
