@@ -43,8 +43,6 @@ export default function TransitionsModal({ resetGame, totalTime }) {
 	};
 
 	const handlePlayAgain = () => {
-		// put your code to execute when "Play Again" is clicked here
-		console.log('Play Again clicked');
 		handleClose();
 		resetGame();
 	};
@@ -65,7 +63,9 @@ export default function TransitionsModal({ resetGame, totalTime }) {
 	return (
 		<div>
 			{displayInputModal && <GetNameModal setPlayerName={setPlayerName} />}
-			{displayLeaderboard && <LeaderboardModal />}
+			{displayLeaderboard && (
+				<LeaderboardModal handlePlayAgain={handlePlayAgain} />
+			)}
 			<Modal
 				aria-labelledby='transition-modal-title'
 				aria-describedby='transition-modal-description'

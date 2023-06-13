@@ -12,7 +12,7 @@ import TableRow from '@mui/material/TableRow';
 import Button from '@mui/material/Button';
 import { getLeaderboard } from '../firebase';
 
-function LeaderboardModal() {
+function LeaderboardModal({ handlePlayAgain }) {
 	const [open, setOpen] = useState(true);
 	const [leaderboard, setLeaderboard] = useState([]);
 
@@ -85,6 +85,7 @@ function LeaderboardModal() {
 						</Table>
 					</TableContainer>
 					<Button
+						onClick={handlePlayAgain}
 						variant='contained'
 						color='primary'
 						sx={{

@@ -7,7 +7,6 @@ import PlayGameHeader from './components/PlayGameHeader';
 import {
 	getAllMaps,
 	getAllMapsData,
-	setFirebaseMapData,
 	retrieveFoldersAndImages,
 } from './firebase';
 
@@ -27,13 +26,13 @@ function App() {
 		React.useState(null);
 
 	React.useEffect(() => {
-		if(startTime) console.log(startTime)
-	}, [startTime])
+		if (startTime) console.log(startTime);
+	}, [startTime]);
 
 	React.useEffect(() => {
-		if(endTime) console.log(endTime)
-		setTotalTime(endTime - startTime)
-	}, [endTime])
+		if (endTime) console.log(endTime);
+		setTotalTime(endTime - startTime);
+	}, [endTime]);
 
 	function lightUpFoundTarget(targetName) {
 		setTargetName(targetName);
@@ -47,8 +46,7 @@ function App() {
 	}, [currentMapData]);
 
 	React.useEffect(() => {
-		//setFirebaseMapData(maps);
-
+		console.log('Fetching all data');
 		const fetchAllMaps = async () => {
 			const maps = await getAllMaps();
 			if (!allMaps) setAllmaps(maps);
@@ -67,7 +65,7 @@ function App() {
 		fetchAllMaps();
 		fetchAllMapsData();
 		fetchAllMapsTargetImages();
-	}, []);
+	}, [isGameOver]);
 
 	function selectCurrentMapFromArray(index) {
 		// Set the selected map image for game
@@ -118,8 +116,13 @@ function App() {
 	}
 
 	function resetGame() {
+		console.log('Resetting Game');
 		setIsGameOver(false);
 		setIsMainMenuActive(true);
+		setCurrentMap(null);
+		setCurrentMapData(null);
+		setTargetName(null);
+		setCurrentMapTargetImages(null);
 	}
 
 	function getScaledrectangles(e, img) {
