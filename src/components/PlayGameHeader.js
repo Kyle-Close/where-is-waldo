@@ -12,7 +12,7 @@ function PlayGameHeader({
 	targetName,
 	currentMapTargetImages,
 	setCurrentMapTargetImages,
-	setStartTime
+	setStartTime,
 }) {
 	const [seconds, setSeconds] = React.useState(0);
 	const originalMapData = React.useRef();
@@ -22,6 +22,7 @@ function PlayGameHeader({
 	}, []);
 
 	React.useEffect(() => {
+		// Found match
 		if (targetName && currentMapData) {
 			const index = getFoundTargetIndex(targetName);
 			setCurrentMapTargetImages((prev) => {
