@@ -30,7 +30,7 @@ const style = {
   };
   
 
-  export default function TransitionsModal({resetGame}) {
+  export default function TransitionsModal({resetGame, totalTime}) {
 
     const [open, setOpen] = React.useState(true);
     
@@ -85,7 +85,7 @@ const style = {
                   textAlign: 'center' // Center align the text
                 }}
               >
-                You found all targets in xyz seconds.
+                You found all targets in {totalTime} seconds.
               </Typography>
               <Typography 
                 id="transition-modal-description2"

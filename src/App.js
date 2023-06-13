@@ -12,6 +12,9 @@ import {
 } from './firebase';
 
 function App() {
+	const [startTime, setStartTime] = React.useState(null);
+	const [endTime, setEndTime] = React.useState(null);
+	const [totalTime, setTotalTime] = React.useState(null);
 	const [isMainMenuActive, setIsMainMenuActive] = React.useState(true);
 	const [allMaps, setAllmaps] = React.useState(null);
 	const [currentMap, setCurrentMap] = React.useState(null);
@@ -22,6 +25,15 @@ function App() {
 	const [allMapsTargetImages, setAllMapsTargetImages] = React.useState(null);
 	const [currentMapTargetImages, setCurrentMapTargetImages] =
 		React.useState(null);
+
+	React.useEffect(() => {
+		if(startTime) console.log(startTime)
+	}, [startTime])
+
+	React.useEffect(() => {
+		if(endTime) console.log(endTime)
+		setTotalTime(endTime - startTime)
+	}, [endTime])
 
 	function lightUpFoundTarget(targetName) {
 		setTargetName(targetName);
@@ -136,6 +148,7 @@ function App() {
 							targetName={targetName}
 							currentMapTargetImages={currentMapTargetImages}
 							setCurrentMapTargetImages={setCurrentMapTargetImages}
+							setStartTime={setStartTime}
 						/>
 						<Canvas
 							isDevMode={false}
@@ -148,6 +161,8 @@ function App() {
 							isGameOver={isGameOver}
 							setIsGameOver={setIsGameOver}
 							resetGame={resetGame}
+							setEndTime={setEndTime}
+							totalTime={totalTime}
 						/>
 					</>
 				)

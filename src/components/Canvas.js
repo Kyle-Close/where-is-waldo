@@ -3,6 +3,7 @@ import CanvasDev from './CanvasDev';
 import SelectionMenu from './SelectionMenu';
 import TransitionsModal from './Modal';
 import '../styles/Canvas.css';
+import { Timestamp } from 'firebase/firestore/lite';
 
 function Canvas({
 	isDevMode,
@@ -14,7 +15,9 @@ function Canvas({
 	lightUpFoundTarget,
 	isGameOver,
 	setIsGameOver,
-	resetGame
+	resetGame,
+	setEndTime,
+	totalTime
 }) {
 	// States
 	const [rectHeight, setRectHeight] = React.useState(50);
@@ -207,6 +210,12 @@ function Canvas({
 		};
 	}, [canvasRef, isSelection]); // Add any other dependencies for this useEffect here.
 
+	useEffect(() => {
+		if(isGameOver){
+			setEndTime(Timestamp.now().seconds);
+		}
+	}, [isGameOver])
+
 	return (
 		<>
 			{isDevMode && (
@@ -246,7 +255,7 @@ function Canvas({
 							
 						/>
 					)}
-					{ isGameOver && (<TransitionsModal resetGame={resetGame}/>)}
+					{ isGameOver && (<TransitionsModal totalTime={totalTime} resetGame={resetGame}/>)}
 				</>
 			)}
 		</>

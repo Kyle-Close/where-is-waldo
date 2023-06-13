@@ -12,9 +12,9 @@ function PlayGameHeader({
 	targetName,
 	currentMapTargetImages,
 	setCurrentMapTargetImages,
+	setStartTime
 }) {
 	const [seconds, setSeconds] = React.useState(0);
-	const [startTime, setStartTime] = React.useState();
 	const originalMapData = React.useRef();
 
 	React.useEffect(() => {
@@ -46,7 +46,7 @@ function PlayGameHeader({
 
 	// Get time on first render for firebase
 	React.useEffect(() => {
-		setStartTime(Timestamp.now());
+		setStartTime(Timestamp.now().seconds);
 	}, []);
 
 	React.useEffect(() => {
@@ -59,10 +59,6 @@ function PlayGameHeader({
 			clearInterval(interval);
 		};
 	}, []);
-
-	function handleClick() {
-		console.log(Timestamp.now() - startTime);
-	}
 
 	const images = currentMapTargetImages.map((obj, key) => {
 		const style = obj.isFound ? { backgroundColor: 'green' } : {};
@@ -80,7 +76,7 @@ function PlayGameHeader({
 		<div className='play-game-header'>
 			{images}
 			<div>
-				<h3 onClick={handleClick}>{seconds}</h3>
+				<h3>{seconds}</h3>
 			</div>
 		</div>
 	);
