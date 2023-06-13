@@ -26,11 +26,6 @@ function App() {
 		React.useState(null);
 
 	React.useEffect(() => {
-		if (startTime) console.log(startTime);
-	}, [startTime]);
-
-	React.useEffect(() => {
-		if (endTime) console.log(endTime);
 		setTotalTime(endTime - startTime);
 	}, [endTime]);
 
@@ -46,7 +41,6 @@ function App() {
 	}, [currentMapData]);
 
 	React.useEffect(() => {
-		console.log('Fetching all data');
 		const fetchAllMaps = async () => {
 			const maps = await getAllMaps();
 			if (!allMaps) setAllmaps(maps);

@@ -129,7 +129,6 @@ export async function getLeaderboard() {
 		let leaderboard = querySnapshot.docs.map((doc) => doc.data().user);
 		leaderboard.sort((a, b) => parseFloat(a.time) - parseFloat(b.time));
 		leaderboard = leaderboard.slice(0, 10); // Only display top 10
-		console.log(leaderboard);
 		return leaderboard;
 	} catch (error) {
 		console.log('Error retrieving leaderboard:', error);
