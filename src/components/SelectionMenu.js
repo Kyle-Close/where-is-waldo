@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Select, MenuItem, FormControl } from '@mui/material';
+import { Button, Menu, MenuItem, FormControl } from '@mui/material';
 
 function SelectionMenu({
 	style,
@@ -9,24 +9,18 @@ function SelectionMenu({
 	selectedRect,
 	lightUpFoundTarget,
 }) {
-	const [selectedValue, setSelectedValue] = useState('');
+	const [selectedValue, setSelectedValue] = useState(null);
+	const [anchorEl, setAnchorEl] = useState(null);
 
-	const characterList = rectangles.map((rectObj, key) => (
-		<MenuItem
-			value={key}
-			key={key}
-		>
-			{rectObj.character}
-		</MenuItem>
-	));
-
-	const selectStyle = {
-		backgroundColor: '#ffffff',
-		height: '2.5rem',
+	const handleClick = (event) => {
+		setAnchorEl(event.currentTarget);
 	};
 
-	const handleSelectionChange = (event) => {
-		const index = event.target.value;
+	const handleMenuClose = () => {
+		setAnchorEl(null);
+	};
+
+	const handleMenuItemClick = (index) => {
 		setSelectedValue(index);
 		// Check if selection overlaps with character
 		const targetRect = {
@@ -49,18 +43,42 @@ function SelectionMenu({
 		} else console.log('Not overlapping');
 	};
 
+	const characterList = rectangles.map((rectObj, index) => (
+		<MenuItem
+			onClick={() => handleMenuItemClick(index)}
+			key={index}
+		>
+			{rectObj.character}
+		</MenuItem>
+	));
+
+	const selectStyle = {
+		backgroundColor: '#ffffff',
+		height: '2.5rem',
+	};
+
 	return (
 		<FormControl
 			style={style}
 			sx={{ m: 1, minWidth: 80 }}
 		>
-			<Select
-				value={selectedValue}
-				onChange={handleSelectionChange}
+			<Button
+				aria-controls='simple-menu'
+				aria-haspopup='true'
+				onClick={handleClick}
 				style={selectStyle}
 			>
+				Select
+			</Button>
+			<Menu
+				id='simple-menu'
+				anchorEl={anchorEl}
+				keepMounted
+				open={Boolean(anchorEl)}
+				onClose={handleMenuClose}
+			>
 				{characterList}
-			</Select>
+			</Menu>
 		</FormControl>
 	);
 }
