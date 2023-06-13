@@ -84,8 +84,6 @@ export async function retrieveFoldersAndImages() {
 
 			folderArray.push(folderObject);
 		}
-
-		console.log(folderArray);
 		return folderArray;
 	} catch (error) {
 		console.log(error);

@@ -7,7 +7,7 @@ function SelectionMenu({
 	setCurrentMapData,
 	rectanglesOverlap,
 	selectedRect,
-	lightUpFoundTarget
+	lightUpFoundTarget,
 }) {
 	const [selectedValue, setSelectedValue] = useState('');
 
@@ -36,13 +36,11 @@ function SelectionMenu({
 			height: rectangles[index].height,
 		};
 
-		console.log(targetRect, selectedRect);
-
 		if (rectanglesOverlap(selectedRect, targetRect)) {
 			setCurrentMapData((prevMapData) => {
 				const currentRects = prevMapData.rectangles;
 				const removedRect = currentRects.splice(index, 1);
-				lightUpFoundTarget(removedRect[0].character)
+				lightUpFoundTarget(removedRect[0].character);
 				return {
 					mapName: prevMapData.mapName,
 					rectangles: [...currentRects],

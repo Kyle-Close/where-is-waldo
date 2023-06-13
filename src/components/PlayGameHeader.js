@@ -22,16 +22,10 @@ function PlayGameHeader({
 	}, []);
 
 	React.useEffect(() => {
-		console.log('New currentMapTargetImages: ', currentMapTargetImages);
-	}, [currentMapTargetImages]);
-
-	React.useEffect(() => {
 		if (targetName && currentMapData) {
 			const index = getFoundTargetIndex(targetName);
-			console.log('HERE', index);
 			setCurrentMapTargetImages((prev) => {
 				const newArray = prev.map((obj, i) => {
-					console.log(i, index);
 					if (i === index) {
 						return { ...obj, isFound: true };
 					}
@@ -44,7 +38,6 @@ function PlayGameHeader({
 	}, [currentMapData, setCurrentMapTargetImages, targetName]);
 
 	function getFoundTargetIndex(targetName) {
-		console.log('shit fucker: ', targetName);
 		const foundIndex = originalMapData.current.rectangles.findIndex(
 			(data) => data.character === targetName
 		);
@@ -73,7 +66,6 @@ function PlayGameHeader({
 
 	const images = currentMapTargetImages.map((obj, key) => {
 		const style = obj.isFound ? { backgroundColor: 'green' } : {};
-		console.log(obj);
 		return (
 			<div
 				key={key}

@@ -28,7 +28,6 @@ function App() {
 	}
 
 	React.useEffect(() => {
-		console.log(currentMapData);
 		if (currentMapData && currentMapData.rectangles.length === 0) {
 			//game over
 			setIsGameOver(true);
@@ -65,7 +64,6 @@ function App() {
 		// Set the current target images
 		const currentMapTargetImagesArr = [];
 		allMapsTargetImages[index].images.forEach((image) => {
-			console.log('Here', image);
 			const obj = {
 				img: image,
 				isFound: false,
