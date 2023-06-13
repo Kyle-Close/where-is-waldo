@@ -19,58 +19,9 @@ function App() {
 	const [currentMapData, setCurrentMapData] = React.useState(null);
 	const [isGameOver, setIsGameOver] = React.useState(false);
 	const [targetName, setTargetName] = React.useState(null);
-
-	const folderData = retrieveFoldersAndImages();
-	console.log('Here', folderData);
-
-	const maps = [
-		{
-			mapName: 'Map 0',
-			rectangles: [
-				{
-					character: 'Kratos',
-					x: 415,
-					y: 650,
-					width: 50,
-					height: 70,
-				},
-				{
-					character: 'Ratchet',
-					x: 300,
-					y: 1150,
-					width: 60,
-					height: 50,
-				},
-				{
-					character: 'Test',
-					x: 600,
-					y: 1150,
-					width: 90,
-					height: 90,
-				},
-			],
-		},
-		{
-			mapName: 'Map 1',
-			rectangles: [
-				{
-					character: 'Jimbo',
-					x: 415,
-					y: 650,
-					width: 50,
-					height: 70,
-				},
-				{
-					character: 'Randy',
-					x: 500,
-					y: 100,
-					width: 100,
-					height: 150,
-				},
-			],
-		},
-		//...more maps
-	];
+	const [allMapsTargetImages, setAllMapsTargetImages] = React.useState(null);
+	const [currentMapTargetImages, setCurrentMapTargetImages] =
+		React.useState(null);
 
 	function lightUpFoundTarget(targetName) {
 		setTargetName(targetName);
@@ -97,14 +48,32 @@ function App() {
 			setAllMapsData(mapsData);
 		};
 
+		const fetchAllMapsTargetImages = async () => {
+			const mapsTargetImages = await retrieveFoldersAndImages();
+			setAllMapsTargetImages(mapsTargetImages);
+		};
+
 		fetchAllMaps();
 		fetchAllMapsData();
+		fetchAllMapsTargetImages();
 	}, []);
 
 	function selectCurrentMapFromArray(index) {
 		// Set the selected map image for game
 		const currentMap = allMaps[index];
 		setCurrentMap(currentMap);
+		// Set the current target images
+		const currentMapTargetImagesArr = [];
+		allMapsTargetImages[index].images.forEach((image) => {
+			console.log('Here', image);
+			const obj = {
+				img: image,
+				isFound: false,
+			};
+			currentMapTargetImagesArr.push(obj);
+		});
+
+		setCurrentMapTargetImages(currentMapTargetImagesArr);
 		// Set the selected map data for game (hit boxes)
 		let currentMapData;
 
@@ -167,6 +136,8 @@ function App() {
 						<PlayGameHeader
 							currentMapData={currentMapData}
 							targetName={targetName}
+							currentMapTargetImages={currentMapTargetImages}
+							setCurrentMapTargetImages={setCurrentMapTargetImages}
 						/>
 						<Canvas
 							isDevMode={false}

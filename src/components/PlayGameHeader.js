@@ -7,7 +7,12 @@ import sackboy from '../img/sackboy.webp';
 
 import '../styles/PlayGameHeader.css';
 
-function PlayGameHeader({currentMapData, targetName}) {
+function PlayGameHeader({
+	currentMapData,
+	targetName,
+	currentMapTargetImages,
+	setCurrentMapTargetImages,
+}) {
 	const [seconds, setSeconds] = React.useState(0);
 	const [startTime, setStartTime] = React.useState();
 	const originalMapData = React.useRef();
@@ -17,14 +22,33 @@ function PlayGameHeader({currentMapData, targetName}) {
 	}, []);
 
 	React.useEffect(() => {
-		if(targetName && currentMapData)getFoundTargetIndex(targetName);
-	}, [currentMapData]);
+		console.log('New currentMapTargetImages: ', currentMapTargetImages);
+	}, [currentMapTargetImages]);
 
-	function getFoundTargetIndex(targetName){
+	React.useEffect(() => {
+		if (targetName && currentMapData) {
+			const index = getFoundTargetIndex(targetName);
+			console.log('HERE', index);
+			setCurrentMapTargetImages((prev) => {
+				const newArray = prev.map((obj, i) => {
+					console.log(i, index);
+					if (i === index) {
+						return { ...obj, isFound: true };
+					}
+					return obj;
+				});
+
+				return newArray;
+			});
+		}
+	}, [currentMapData, setCurrentMapTargetImages, targetName]);
+
+	function getFoundTargetIndex(targetName) {
+		console.log('shit fucker: ', targetName);
 		const foundIndex = originalMapData.current.rectangles.findIndex(
 			(data) => data.character === targetName
-		  );
-		  console.log(foundIndex);
+		);
+		return foundIndex;
 	}
 
 	// Get time on first render for firebase
@@ -42,20 +66,27 @@ function PlayGameHeader({currentMapData, targetName}) {
 			clearInterval(interval);
 		};
 	}, []);
+
 	function handleClick() {
 		console.log(Timestamp.now() - startTime);
 	}
+
+	const images = currentMapTargetImages.map((obj, key) => {
+		const style = obj.isFound ? { backgroundColor: 'green' } : {};
+		console.log(obj);
+		return (
+			<div
+				key={key}
+				style={style}
+			>
+				<img src={obj.img} />
+			</div>
+		);
+	});
+
 	return (
 		<div className='play-game-header'>
-			<div style={{backgroundColor: 'green'}}>
-				<img src={ratchet} />
-			</div>
-			<div>
-				<img src={kratos} />
-			</div>
-			<div>
-				<img src={sackboy} />
-			</div>
+			{images}
 			<div>
 				<h3 onClick={handleClick}>{seconds}</h3>
 			</div>
