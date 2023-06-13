@@ -8,7 +8,8 @@ import Button from '@mui/material/Button';
 import Grid from '@mui/material/Grid';
 
 import winBackgroundImage from '../img/win-screen-background.jpg'
-import { textAlign } from '@mui/system';
+import {addToLeaderboard} from '../firebase'
+import LeaderboardModal from './LeaderboardModal';
 
 const style = {
     backgroundImage: winBackgroundImage,
@@ -33,6 +34,7 @@ const style = {
   export default function TransitionsModal({resetGame, totalTime}) {
 
     const [open, setOpen] = React.useState(true);
+    const [displayLeaderboard, setDisplayLeaderboard] = React.useState(false);
     
     const handleClose = (e, reason) => {
       if (reason && reason === "backdropClick") return;
@@ -49,11 +51,15 @@ const style = {
     const handleEnterTime = () => {
       // put your code to execute when "Enter Time" is clicked here
       console.log("Enter Time clicked");
+      addToLeaderboard('Kyle', '23')
+      setDisplayLeaderboard(true);
       handleClose();
     }
   
     return (
       <div>
+        
+        { displayLeaderboard && <LeaderboardModal />}
         <Modal
           aria-labelledby="transition-modal-title"
           aria-describedby="transition-modal-description"

@@ -102,3 +102,34 @@ async function getImagesInFolder(folderRef) {
 
 	return images;
 }
+
+export async function addToLeaderboard(name, timeInSeconds) {
+	const leaderboardCollection = collection(db, 'Leaderboard');
+	
+	try {
+	  // Create a new document with the user's name and time as an object
+	  await setDoc(doc(leaderboardCollection), {
+		user: {
+		  name: name,
+		  time: timeInSeconds
+		}
+	  });
+	  
+	  console.log('Leaderboard updated successfully!');
+	} catch (error) {
+	  console.log('Error updating leaderboard:', error);
+	}
+  }
+  
+  export async function getLeaderboard() {
+	const leaderboardCollection = collection(db, 'Leaderboard');
+	
+	try {
+	  const querySnapshot = await getDocs(leaderboardCollection);
+	  const leaderboard = querySnapshot.docs.map((doc) => doc.data().user);
+	  
+	  return leaderboard;
+	} catch (error) {
+	  console.log('Error retrieving leaderboard:', error);
+	}
+  }
